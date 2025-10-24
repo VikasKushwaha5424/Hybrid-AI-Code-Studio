@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Code Iterator Pro</title>
+    
+    <!-- Load ALL libraries first -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.1.0/dist/diff.min.js"></script>
+    
+    <!-- Link our own files (Flask serves 'static' folder) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    
+    <!-- NEW: Toast Notification for Errors/Success -->
+    <div id="toast-notification">This is a message</div>
+
+    <h1>🎮 Game Code Iterator Pro</h1>
+    
+    <div class="model-info">
+        <p><strong>Using:</strong> <span id="model-display-name">Llama 3 (Cloud - High Quality)</span></p>
+        <p><strong>Note:</strong> Processing time depends on the model and your computer's capabilities.</p>
+    </div>
+    
+    <div class="container">
+        <div class="input-section">
+            <h2>Input</h2>
+            
+            <!-- NEW: Model Selector -->
+            <label for="model-select">Select AI Model:</label>
+            <select id="model-select">
+                <option value="llama3-cloud">Llama 3 (Cloud - High Quality)</option>
+                <option value="phi3-local">Phi-3 Mini (Local - Fast)</option>
+                <option value="llama3-local">Llama 3 (Local - SLOW/Might Crash)</option>
+            </select>
+            
+            <label for="code-input">Original Code:</label>
+            <textarea id="code-input" placeholder="Paste your game code here..."></textarea>
+            
+            <label for="prompt-input">What would you like to improve?</label>
+            <!-- This is now a resizable textarea -->
+            <textarea id="prompt-input" placeholder="E.g., Optimize this collision detection algorithm" rows="3"></textarea>
+            
+            <button id="submit-btn">Improve Code</button>
+            <div class="loading" id="loading-indicator">
+                Processing your request (this might take a minute)...
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2>Output</h2>
+            
+            <div id="result-container">
+                <div class="tab-container">
+                    <div class="tab active" data-tab="improved-code">Improved Code</div>
+                    <!-- NEW: Diff Tab -->
+                    <div class="tab" data-tab="diff">Diff (Changes)</div>
+                    <div class="tab" data-tab="explanation">Explanation</div>
+                    <div class="tab" data-tab="suggestions">Additional Suggestions</div>
+                </div>
+                
+                <div class="tab-content active" id="improved-code">
+                    <!-- NEW: Copy Button -->
+                    <button id="copy-btn" title="Copy code to clipboard">Copy</button>
+                    <pre id="improved-code-display">Your improved code will appear here.</pre>
+                </div>
+
+                <!-- NEW: Diff Content Pane -->
+                <div class="tab-content" id="diff">
+                    <pre id="diff-display">Changes will appear here.</pre>
+                </div>
+                
+                <div class="tab-content" id="explanation">
+                    <div id="explanation-display" class="explanation-content">Explanation will appear here.</div>
+                </div>
+                
+                <div class="tab-content" id="suggestions">
+                    <div id="suggestions-display" class="explanation-content">Additional suggestions will appear here.</div>
+                </div>
+                
+                <button id="integrate-btn">Integrate Changes</button>
+            </div>
+            
+            <div id="final-output">
+                <h3>Final Integrated Code:</h3>
+                <pre id="final-code-display"></pre>
+                <button id="reset-btn">Start New Iteration</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

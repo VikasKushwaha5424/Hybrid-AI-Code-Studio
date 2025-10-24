@@ -1,0 +1,212 @@
+/* --- Base Styles --- */
+body {
+    font-family: 'Fira Code', monospace;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #1e1e2f;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #00ffc3;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 0 0 5px #00ffc3;
+}
+
+/* --- Layout --- */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-section, .output-section {
+    background: #2b2b3d;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 195, 0.1);
+}
+
+/* --- Form Elements --- */
+textarea, select {
+    width: 95%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1c1c2b;
+    color: #e0e0e0;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95em;
+    resize: vertical;
+}
+
+#code-input {
+    min-height: 300px;
+}
+
+#prompt-input {
+    min-height: 40px;
+    height: 80px; /* Start a bit taller */
+}
+
+button {
+    background-color: #00ffc3;
+    color: #1e1e2f;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px #00ffc3;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#integrate-btn {
+    background-color: #ff4081;
+    display: none;
+    margin-top: 10px;
+}
+
+#integrate-btn:hover {
+    box-shadow: 0 0 10px #ff4081;
+}
+
+/* --- Output Area & Tabs --- */
+pre {
+    background-color: #151525;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid #333;
+    color: #00ffff;
+    min-height: 200px;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+}
+
+.explanation-content {
+    background-color: #151525;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    color: #e0e0e0;
+    min-height: 200px;
+    white-space: pre-wrap;
+}
+.explanation-content p { margin-top: 0; margin-bottom: 1em; }
+.explanation-content ul, .explanation-content ol { padding-left: 20px; }
+
+.tab-container { display: flex; margin-bottom: 10px; }
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #33334d;
+    border-radius: 6px 6px 0 0;
+    margin-right: 5px;
+    color: #ccc;
+    font-weight: bold;
+}
+.tab.active {
+    background-color: #151525;
+    border-bottom: 2px solid #00ffc3;
+    color: #00ffc3;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+#final-output { display: none; }
+
+/* --- Model Info Box --- */
+.model-info {
+    background-color: #2d2d40;
+    border-left: 4px solid #ffb347;
+    padding: 15px;
+    border-radius: 0 4px 4px 0;
+    color: #f0e6d2;
+    margin-bottom: 20px;
+}
+
+/* --- NEW: Toast Notification --- */
+#toast-notification {
+    visibility: hidden;
+    position: fixed;
+    bottom: -100px; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 5px;
+    background-color: #00ffc3;
+    color: #1e1e2f;
+    font-weight: bold;
+    z-index: 1000;
+    transition: bottom 0.5s ease-in-out;
+}
+#toast-notification.active {
+    visibility: visible;
+    bottom: 30px;
+}
+
+/* --- NEW: Copy Button --- */
+#improved-code {
+    position: relative; /* Parent for absolute positioning */
+}
+#copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #555;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px;
+    z-index: 10;
+}
+#copy-btn:hover {
+    background: #777;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- NEW: Diff Viewer Styles --- */
+#diff-display span {
+    white-space: pre-wrap;
+    font-family: 'Fira Code', monospace;
+}
+#diff-display ins {
+    background-color: #2a4; /* Darker green */
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+#diff-display del {
+    background-color: #622; /* Darker red */
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+/* --- Misc --- */
+.loading {
+    text-align: center;
+    color: #888;
+    display: none;
+    margin-top: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
